@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Donors.init(
+  Donor.init(
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
@@ -24,5 +24,5 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'donors'
     }
   )
-  return donors
+  return Donor
 }
