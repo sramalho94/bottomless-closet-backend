@@ -1,7 +1,7 @@
 const { Donor } = require("../models");
 
 class DonorController {
-  async createDoner(req, res) {
+  async createDonor(req, res) {
     try {
       const donor = await Donor.create(req.body);
       res.status(201).json({ donor });
@@ -10,7 +10,7 @@ class DonorController {
     }
   }
 
-  async deleteDoner(req, res) {
+  async deleteDonor(req, res) {
     try {
       const { id } = req.params;
       const deleted = await Donor.destroy({
@@ -19,25 +19,25 @@ class DonorController {
       if (deleted) {
         return res.status(204).send("Donor deleted");
       }
-      throw new Error("User not found");
+      throw new Error("Donor not found");
     } catch (error) {
       return res.status(500).send(error.message);
     }
   }
 
-  async getAllDoners(req, res) {
+  async getAllDonors(req, res) {
     try {
-      const doners = await Donor.findAll();
-      res.status(200).json(doners);
+      const donors = await Donor.findAll();
+      res.status(200).json(donors);
     } catch (err) {
       res.status(400).json(err);
     }
   }
 
-  async getDonerById(req, res) {
+  async getDonorById(req, res) {
     try {
-      const doner = await Donor.findByPk(req.params.id);
-      res.status(200).json(doner);
+      const donor = await Donor.findByPk(req.params.id);
+      res.status(200).json(donor);
     } catch (err) {
       res.status(400).json(err);
     }
