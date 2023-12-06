@@ -1,8 +1,10 @@
 const { Client } = require("../models");
 
+
 class ClientController {
   async createClient(req, res) {
     try {
+
       const client = await Client.create(req.body);
       res.status(201).json({ client });
     } catch (err) {
@@ -45,3 +47,4 @@ class ClientController {
 }
 
 module.exports = new ClientController();
+

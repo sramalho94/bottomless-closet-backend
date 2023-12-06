@@ -1,10 +1,9 @@
 const router = require('express').Router()
-// const InitiativeController = require('../controllers/InitiativeController')
+const InitiativeController = require('../controllers/InitiativeController')
 
-// router.post('/initiative', InitiativeController.create);
-// router.get('/initiative', InitiativeController.getAll);
-// router.get('/initiative/:id', InitiativeController.getOne);
-// router.put('/initiative/:id', InitiativeController.update);
-// router.delete('/initiative/:id', InitiativeController.delete);
+router.get('/', InitiativeController.getAllInitiatives)
+router.post('/', InitiativeController.createInitiative)
+router.get('/:id', InitiativeController.getInitiativeById)
+router.delete('/:id', InitiativeController.deleteInitiative)
 
 module.exports = router
