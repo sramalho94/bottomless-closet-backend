@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Donation.belongsTo(models.Donor, {
         foreignKey: 'donor_id',
-        onDelete: 'CASCADE',
+        onDelete: 'CASCADE'
+      })
+      Donation.belongsTo(models.Initiative, {
+        foreignKey: 'initiative_id',
+        onDelete: 'SET NULL'
       })
     }
   }
@@ -21,19 +25,23 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         onDelete: 'CASCADE',
-        references: { model: 'donors', key: 'id' },
+        references: { model: 'donors', key: 'id' }
       },
-      initiative_id: DataTypes.INTEGER,
+      initiative_id: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: { model: 'initiatives', key: 'id' }
+      },
       donationType: DataTypes.STRING,
       donationValue: DataTypes.INTEGER,
       inMemoriam: DataTypes.STRING,
       comment: DataTypes.STRING,
-      orgMatchName: DataTypes.STRING,
+      orgMatchName: DataTypes.STRING
     },
     {
       sequelize,
       modelName: 'Donation',
-      tableName: 'donations',
+      tableName: 'donations'
     }
   )
   return Donation
