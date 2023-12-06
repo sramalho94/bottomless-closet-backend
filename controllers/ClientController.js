@@ -1,10 +1,8 @@
 const { Client } = require("../models");
 
-
 class ClientController {
   async createClient(req, res) {
     try {
-
       const client = await Client.create(req.body);
       res.status(201).json({ client });
     } catch (err) {
@@ -39,12 +37,13 @@ class ClientController {
   async getClientById(req, res) {
     try {
       const client = await Client.findByPk(req.params.id);
+      console.log("Client Data:", client); // Log the client data
       res.status(200).json(client);
     } catch (err) {
-      res.status(400).json(err);
+      console.error("Error:", err);
+      res.status(500).json({ error: "Internal server error" });
     }
   }
 }
 
 module.exports = new ClientController();
-
