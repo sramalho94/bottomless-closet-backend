@@ -1,5 +1,5 @@
-'use strict'
-const { Model } = require('sequelize')
+'use strict';
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Donor extends Model {
     /**
@@ -13,16 +13,28 @@ module.exports = (sequelize, DataTypes) => {
   }
   Donor.init(
     {
-      firstName: DataTypes.STRING,
-      lastName: DataTypes.STRING,
-      email: DataTypes.STRING,
-      phoneNumber: DataTypes.STRING
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      phoneNumber: {
+        type: DataTypes.STRING,
+        allowNull: true, // You can set allowNull: true for fields that can be nullable
+      },
     },
     {
       sequelize,
       modelName: 'Donor',
-      tableName: 'donors'
+      tableName: 'donors',
     }
-  )
-  return Donor
-}
+  );
+  return Donor;
+};
