@@ -34,11 +34,11 @@ describe('Test Donation controllers', () => {
 
     testInitaitiveId = testInitiative.id
 
-    testDonation = Donation.create({
+    testDonation = await Donation.create({
       donor_id: testDonorId,
       donationType: 'monthly',
       donationValue: 10,
-      initiativeId: testInitaitiveId
+      initiative_id: testInitaitiveId
     })
 
     testDonationId = testDonation.id
@@ -65,6 +65,32 @@ describe('Test Donation controllers', () => {
     )
     expect(response.body.donations.comment).toBe('Testing')
     expect(response.body.donations.orgMatchName).toBe('testOrg')
+  })
+
+  test('Get All Donations', async () => {
+    const response = await request(app).get('/api/donation')
+
+    expect(response.statusCode).toBe(200)
+    expect(Array.isArray(response.body)).toBeTruthy()
+    expect(response.body.length).toBeGreaterThan(0)
+  })
+
+  test('Get Donation by id', async () => {
+    const response = await request(app).get(`/api/donation/${testDonationId}`)
+
+    expect(response.statusCode).toBe(200)
+    expect(response.body.donationType).toBe('monthly')
+    expect(response.body.donationValue).toBe(10)
+    expect(response.body.initiative_id).toBe(testInitaitiveId)
+    expect(response.body.donor_id).toBe(testDonorId)
+  })
+
+  test('Delete Donation', async () => {
+    const response = await request(app).delete(
+      `/api/donation/${testDonationId}`
+    )
+
+    expect(response.statusCode).toBe(204)
   })
 
   afterAll(async () => {
