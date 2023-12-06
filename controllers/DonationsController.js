@@ -1,4 +1,4 @@
-const { Donation, Donor } = require('../models')
+const { Donation, Donor, Initiative } = require('../models')
 
 class DonationsController {
   async createDonations(req, res) {
@@ -14,7 +14,7 @@ class DonationsController {
     try {
       const { id } = req.params
       const deleted = await Donation.destroy({
-        where: { id: id },
+        where: { id: id }
       })
       if (deleted) {
         return res.status(204).send('Donations deleted')
@@ -27,7 +27,9 @@ class DonationsController {
 
   async getAllDonations(req, res) {
     try {
-      const donations = await Donation.findAll({ include: [{ model: Donor }] })
+      const donations = await Donation.findAll({
+        include: [{ model: Donor }, { model: Initiative }]
+      })
       res.status(200).json(donations)
     } catch (err) {
       res.status(400).json(err)
@@ -37,7 +39,8 @@ class DonationsController {
   async getDonationsById(req, res) {
     try {
       const donations = await Donation.findByPk(req.params.id, {
-      include: [{ model: Donor }]})
+        include: [{ model: Donor }, { model: Initiative }]
+      })
       res.status(200).json(donations)
     } catch (err) {
       res.status(400).json(err)
