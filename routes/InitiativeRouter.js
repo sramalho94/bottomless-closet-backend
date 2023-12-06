@@ -1,5 +1,5 @@
-const router = require('express').Router();
-// const InitiativeController = require('../controllers/InitiativeController');
+const router = require('express').Router()
+// const InitiativeController = require('../controllers/InitiativeController')
 
 // router.post('/initiative', InitiativeController.create);
 // router.get('/initiative', InitiativeController.getAll);
@@ -7,4 +7,4 @@ const router = require('express').Router();
 // router.put('/initiative/:id', InitiativeController.update);
 // router.delete('/initiative/:id', InitiativeController.delete);
 
-module.exports = router;
+module.exports = router

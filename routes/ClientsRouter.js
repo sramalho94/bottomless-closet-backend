@@ -1,5 +1,5 @@
-const router = require('express').Router();
-// const ClientsController = require('../controllers/ClientsController');
+const router = require('express').Router()
+// const ClientsController = require('../controllers/ClientsController')
 
 // router.post('/clients', ClientsController.create);
 // router.get('/clients', ClientsController.getAll);
@@ -7,4 +7,4 @@ const router = require('express').Router();
 // router.put('/clients/:id', ClientsController.update);
 // router.delete('/clients/:id', ClientsController.delete);
 
-module.exports = router;
+module.exports = router
